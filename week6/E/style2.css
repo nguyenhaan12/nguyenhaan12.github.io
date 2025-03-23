@@ -1,0 +1,27 @@
+
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #aaa;
+  }
+  .productname {
+    font-weight: bold;
+  }
+  .productprice {
+    font-style: italic;
+  }
+  .productprice::before {
+    content: " - ";
+  }
+  .product {
+    text-align: center;
+    width: 150px;
+    margin: 0px 20px;
+    float: left;
+    cursor: pointer;
+  }
+  .product:hover .productDetails {
+    display: block;
+  }
+  
