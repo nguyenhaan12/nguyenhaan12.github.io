@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { text-align: center; }
+        form { max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        input:focus { border-color: #007BFF; outline: none; }
+        .strength-meter { height: 10px; background: #ddd; border-radius: 5px; margin-bottom: 15px; }
+        .strength-meter div { height: 100%; width: 0; border-radius: 5px; }
+        .strength-meter.weak div { width: 33%; background: red; }
+        .strength-meter.medium div { width: 66%; background: orange; }
+        .strength-meter.strong div { width: 100%; background: green; }
+        .error { color: red; font-size: 0.9em; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:disabled { background: #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Đăng ký tài khoản</h1>
+    <form id="registerForm" onsubmit="return validateForm()">
+        <label for="username">Tên đăng nhập:</label>
+        <input type="text" id="username" placeholder="Nhập tên đăng nhập">
+        <div id="usernameError" class="error"></div>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Nhập email">
+        <div id="emailError" class="error"></div>
+
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" placeholder="Nhập mật khẩu" oninput="checkPasswordStrength()">
+        <div class="strength-meter" id="strengthMeter"><div></div></div>
+        <div id="passwordError" class="error"></div>
+
+        <label for="confirmPassword">Xác nhận mật khẩu:</label>
+        <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu">
+        <div id="confirmPasswordError" class="error"></div>
+
+        <label><input type="checkbox" id="terms"> Tôi đồng ý với điều khoản sử dụng</label>
+        <div id="termsError" class="error"></div>
+
+        <button type="submit">Đăng ký</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+
+            document.getElementById('usernameError').textContent = username && /^[a-zA-Z0-9]+$/.test(username) ? '' : 'Tên đăng nhập không hợp lệ.';
+            document.getElementById('emailError').textContent = email ? '' : 'Email không được để trống.';
+            document.getElementById('passwordError').textContent = password && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password) ? '' : 'Mật khẩu không hợp lệ.';
+            document.getElementById('confirmPasswordError').textContent = password === confirmPassword ? '' : 'Mật khẩu xác nhận không khớp.';
+            document.getElementById('termsError').textContent = terms ? '' : 'Bạn phải đồng ý với điều khoản sử dụng.';
+
+            isValid = username && /^[a-zA-Z0-9]+$/.test(username) && email && password && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password) && password === confirmPassword && terms;
+            return isValid;
+        }
+
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthMeter = document.getElementById('strengthMeter');
+            const strength = strengthMeter.querySelector('div');
+            strengthMeter.className = 'strength-meter';
+            strength.style.width = password.length < 6 ? '33%' : password.length < 10 ? '66%' : '100%';
+            strengthMeter.classList.add(password.length < 6 ? 'weak' : password.length < 10 ? 'medium' : 'strong');
+        }
+    </script>
+</body>
+</html>

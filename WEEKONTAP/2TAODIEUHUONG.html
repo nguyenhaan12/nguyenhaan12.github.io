@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Điều Hướng</title>
+    <style>
+        /* Định dạng tab */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid #7ebbcf;
+            border-bottom: none;
+            background-color: #dae0e6;
+        }
+
+        .tab.active {
+            background-color: #7fa03e;
+            font-weight: bold;
+            border-top: 2px solid #007BFF;
+            border-left: 2px solid #007BFF;
+            border-right: 2px solid #007BFF;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tab Điều Hướng Nội Dung</h1>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab(event, 'gioithieu')">Giới thiệu &copy;</div>
+        <div class="tab" onclick="switchTab(event, 'dichvu')">Dịch vụ &trade;</div>
+        <div class="tab" onclick="switchTab(event, 'lienhe')">Liên hệ</div>
+    </div>
+
+    <!-- Nội dung các tab -->
+    <div id="gioithieu" class="tab-content active">
+        <h2>Giới thiệu</h2>
+        <p>Chào mừng bạn đến với trang web của chúng tôi. Đây là phần giới thiệu.</p>
+        <ul>
+            <li>Thông tin công ty</li>
+            <li>Lịch sử phát triển</li>
+            <li>Sứ mệnh và tầm nhìn</li>
+        </ul>
+    </div>
+
+    <div id="dichvu" class="tab-content">
+        <h2>Dịch vụ</h2>
+        <p>Chúng tôi cung cấp các dịch vụ chất lượng cao:</p>
+        <ul>
+            <li>Thiết kế website</li>
+            <li>Phát triển phần mềm</li>
+            <li>Tư vấn công nghệ</li>
+        </ul>
+    </div>
+
+    <div id="lienhe" class="tab-content">
+        <h2>Liên hệ</h2>
+        <p>Hãy liên hệ với chúng tôi qua các kênh sau:</p>
+        <ul>
+            <li>Email: contact@example.com</li>
+            <li>Điện thoại: +84 123 456 789</li>
+            <li>Địa chỉ: Hà Nội, Việt Nam</li>
+        </ul>
+    </div>
+
+    <script>
+        function switchTab(event, tabId) {
+            // Xóa lớp "active" khỏi tất cả các tab
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Xóa lớp "active" khỏi tất cả nội dung tab
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Thêm lớp "active" vào tab được chọn
+            event.target.classList.add('active');
+
+            // Hiển thị nội dung tab được chọn
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

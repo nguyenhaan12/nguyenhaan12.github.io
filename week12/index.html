@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bảng linh kiện máy tính</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<nav class="menu">
+    <button onclick="toggleMenu()">Ẩn/Hiện Menu</button>
+    <div id="nav-links">
+        <a href="#">Trang chủ</a> - 
+        <a href="#">Sách ©</a> - 
+        <a href="#">Tác giả ™</a> - 
+        <a href="#">Liên hệ</a>
+    </div>
+</nav>
+
+<h1>Bảng linh kiện máy tính ©</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tên linh kiện</th>
+            <th>Giá (VND)</th>
+            <th>Đánh giá ✮</th>
+        </tr>
+    </thead>
+    <tbody id="product-table">
+        <tr>
+            <td>CPU Intel™ Core i5</td>
+            <td>5000000</td>
+            <td>4.5/5</td>
+        </tr>
+        <tr>
+            <td>RAM DDR4 8GB</td>
+            <td>800000</td>
+            <td>4.0/5</td>
+        </tr>
+        <tr>
+            <td>Ổ cứng SSD 256GB</td>
+            <td>1200000</td>
+            <td>4.8/5</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="buttons">
+    <button onclick="changeTextColor()">Đổi màu chữ</button>
+    <button onclick="sortTable()">Sắp xếp theo giá</button>
+</div>
+
+<div class="contact-form">
+    <h2>Biểu mẫu liên hệ</h2>
+    <form>
+        <label>Họ tên:</label><br>
+        <input type="text" name="name"><br>
+        <label>Email:</label><br>
+        <input type="email" name="email"><br>
+        <label>Tin nhắn:</label><br>
+        <textarea name="message"></textarea><br>
+        <button type="submit">Gửi</button>
+    </form>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

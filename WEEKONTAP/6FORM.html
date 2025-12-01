@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Ôn tập ISV2017</title>
+    <style>
+
+        .form-container {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        input[type="text"], 
+        input[type="email"], 
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+        h3{
+
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <!-- Phần 3: Form liên hệ -->
+    <div class="form-container">
+        <h3>Biểu mẫu liên hệ</h3>
+        <form onsubmit="return validateForm()">
+            <label>Họ tên:</label>
+            <input type="text" id="name">
+            
+            <label>Email:</label>
+            <input type="email" id="email">
+            
+            <label>Tin nhắn:</label>
+            <textarea id="message"></textarea>
+            
+            <input type="submit" value="Gửi">
+        </form>
+    </div>
+    <script>
+        
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Ngăn không cho reload trang
+const name = document.getElementById("fullname").value.trim();
+            const email = document.getElementById("email").value.trim();
+    
+            if (name === "" || email === "") {
+                alert("Vui lòng nhập đầy đủ Họ tên và Email!");
+                return;
+            }
+    
+            // Tạo alert Bootstrap đẹp
+            const alertDiv = document.createElement("div");
+            alertDiv.className = "alert alert-success mt-3";
+            alertDiv.innerText = `Cảm ơn bạn, ${name}! Chúng tôi sẽ liên hệ với bạn qua email: ${email}.`;
+    rm = document.querySelector("form");
+            form.after(alertDiv);
+    
+            // Reset form sau khi gửi
+            form.reset();
+        });
+    </script>
+    
+</body>
+</html>

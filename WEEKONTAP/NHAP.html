@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiệm bà Haan</title>
+    <style>
+        nav {
+            background-color: #5bbfc5;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #c465a4;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .form-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .form-table td {
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #0e0303;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4f749b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello anh em</h1> 
+
+    <!-- Thanh điều khiển -->
+    <nav id="menu">
+        <a href="#menu">Trang chủ</a>
+        <a href="#table">Sản phẩm</a>
+        <a href="#form">Nhập liệu</a>
+    </nav>
+
+    <button onclick="toggleMenu()">Ẩn/hiện menu</button>
+
+    <h2>Menu tiệm nhà Haan</h2>
+    <table id="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Giá thành</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Táo</td>
+                <td><img src="apple.png" class="img" alt="Táo"></td>
+                <td>12.000VND</td>
+            </tr>
+            <tr>
+                <td>Chuối</td>
+                <td><img src="banana.png" class="img" alt="Chuối"></td>
+                <td>10.000VND</td>
+            </tr>
+            <tr>
+                <td>Kiwi</td>
+                <td><img src="kiwi.png" class="img" alt="Kiwi"></td>
+                <td>15.000VND</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Biểu mẫu nhập liệu -->
+    <h2 id="form">Nhập liệu sản phẩm</h2>
+    <table class="form-table">
+        <tr>
+            <td><label for="productName">Tên người mua</label></td>
+            <td><input type="text" id="productName" name="productName"></td>
+        </tr>
+    
+        <tr>
+            <td><label for="productPrice">Số điện thoại</label></td>
+            <td><input type="text" id="productPrice" name="productPrice"></td>
+        </tr>
+        <tr>
+        <div class="mb-3">
+            <label for="" class="form-label">Chọn sản phẩm</label>
+            <select
+                class="form-select form-select-lg"
+                name=""
+                id=""
+            >
+                
+                <option value="">Táo</option>
+                <option value="">Chuối</option>
+                <option value="">Kiwi</option>
+            </select>
+        </div>
+        
+        </tr>
+    </table>
+    <button onclick="submitForm()">Gửi thông tin
+    </button>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menu.style.display === 'none') {
+                menu.style.display = 'flex';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+
+        function validayForm() {
+            const name = document.getElementById('productName').value.trim();
+            const image = document.getElementById('productImage').value.trim();
+            const price = document.getElementById('productPrice').value.trim();
+
+            if (!name || !image || !price) {
+                alert('Vui lòng nhập đầy đủ thông tin!');
+                return;
+            }
+
+            const table = document.getElementById('table').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            const nameCell = newRow.insertCell(0);
+            const imageCell = newRow.insertCell(1);
+            const priceCell = newRow.insertCell(2);
+
+            nameCell.textContent = name;
+            imageCell.innerHTML = `<img src="${image}" class="img" alt="${name}">`;
+            priceCell.textContent = price;
+
+            alert('Sản phẩm đã được thêm!');
+        }
+    </script>
+</body>
+</html>
